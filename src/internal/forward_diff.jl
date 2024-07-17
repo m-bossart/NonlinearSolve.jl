@@ -1,11 +1,11 @@
 # Not part of public API but helps reduce code duplication
 import SimpleNonlinearSolve: __nlsolve_ad, __nlsolve_dual_soln, __nlsolve_∂f_∂p,
-                             __nlsolve_∂f_∂u
+                             __nlsolve_∂f_∂u, AbstractSimpleNonlinearSolveAlgorithm
 
 function SciMLBase.solve(
         prob::NonlinearProblem{<:Union{Number, <:AbstractArray}, iip,
             <:Union{<:Dual{T, V, P}, <:AbstractArray{<:Dual{T, V, P}}}},
-        alg::Union{Nothing, AbstractNonlinearAlgorithm, SimpleNonlinearSolve.AbstractSimpleNonlinearSolveAlgorithm},
+        alg::Union{Nothing, AbstractNonlinearAlgorithm, AbstractSimpleNonlinearSolveAlgorithm},
         args...;
         kwargs...) where {T, V, P, iip}
     sol, partials = __nlsolve_ad(prob, alg, args...; kwargs...)
