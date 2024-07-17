@@ -5,7 +5,7 @@ import SimpleNonlinearSolve: __nlsolve_ad, __nlsolve_dual_soln, __nlsolve_âˆ‚f_â
 function SciMLBase.solve(
         prob::NonlinearProblem{<:Union{Number, <:AbstractArray}, iip,
             <:Union{<:Dual{T, V, P}, <:AbstractArray{<:Dual{T, V, P}}}},
-        alg::Union{Nothing, AbstractNonlinearAlgorithm},
+        alg::Union{Nothing, AbstractNonlinearAlgorithm, SimpleNonlinearSolve.AbstractSimpleNonlinearSolveAlgorithm},
         args...;
         kwargs...) where {T, V, P, iip}
     sol, partials = __nlsolve_ad(prob, alg, args...; kwargs...)
